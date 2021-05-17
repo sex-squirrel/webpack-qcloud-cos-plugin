@@ -73,7 +73,7 @@ module.exports = class WebpackQcloudCOSPlugin {
   }
 
   apply(compiler) {
-    compiler.plugin("emit", (compilation, cb) => {
+    compiler.hooks.emit.tap("WebpackQcloudCOSPlugin", (compilation, cb) => {
       const files = this.pickupAssetsFiles(compilation);
       log(`${green("\nCOS 上传开始......")}`);
       this.uploadFiles(files, compilation)
